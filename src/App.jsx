@@ -2,18 +2,15 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [todoList, setTodoList] = useState([
-    { id: 0, content: "123" },
-    { id: 1, content: "코딩 공부하기" },
-    { id: 2, content: "잠 자기" },
-  ]);
+  const [todoList, setTodoList] = useState([]);
 
   return (
-    <>
+    <div className="container">
+      <h1>TODO-LIST</h1>
       <TodoList todoList={todoList} setTodoList={setTodoList} />
       <hr />
       <TodoInput todoList={todoList} setTodoList={setTodoList} />
-    </>
+    </div>
   );
 }
 
@@ -22,11 +19,11 @@ function TodoInput({ todoList, setTodoList }) {
 
   return (
     <>
-      <input
+      <input 
         value={inputValue}
         onChange={(event) => setInputValue(event.target.value)}
       />
-      <button
+      <button className="input-btn"
         onClick={() => {
           const newTodo = { id: Number(new Date()), content: inputValue };
           const newTodoList = [...todoList, newTodo];
@@ -59,7 +56,7 @@ function Todo({ todo, setTodoList }) {
         value={inputValue}
         onChange={(event) => setInputValue(event.target.value)}
       />
-      <button
+      <button className="modify-btn"
         onClick={() => {
           setTodoList((prev) =>
             prev.map((el) =>
@@ -70,7 +67,7 @@ function Todo({ todo, setTodoList }) {
       >
         수정
       </button>
-      <button
+      <button className="delete-btn"
         onClick={() => {
           setTodoList((prev) => {
             return prev.filter((el) => el.id !== todo.id);
